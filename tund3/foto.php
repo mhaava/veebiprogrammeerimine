@@ -6,9 +6,19 @@
 	
 	$picDir = "../../pics/";
 	$picFiles = [];
-	$allFiles = scandir($picDir);
+	
+	$picFileTypes = ["jpg", "jpeg", "png", "gif"];
+	
+	$allFiles = array_slice(scandir($picDir), 2);
+	//foreach töötab aint tableiga
+	foreach ($allFiles as $file){	
+	$fileType = pathinfo($file, PATHINFO_EXTENSION);
+		if (in_array($fileType, $picFileTypes) == true) {
+			array_push($picFiles, $file);
+		}
+	}
 	//var_dump($allFiles);
-	$picFiles = array_slice($allFiles, 2);
+	//$picFiles = array_slice($allFiles, 2);
 	//var_dump($picFiles);
 	$picFileCount = count($picFiles);
 	echo $picFileCount;
