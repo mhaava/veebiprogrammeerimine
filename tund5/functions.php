@@ -5,7 +5,7 @@
 		$data = htmlspecialchars($data); // eemaldab keelatud märgid
 		return $data;
 	}
-	
+
 	
 /*	$x = 8;
 	$y = 5;
@@ -31,9 +31,9 @@
 	function signIn($email, $password) {
 		$notice = "";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
-		$stmt = $mysqli->prepare("SELECT id, email, password FROM vpusers WHERE email = ?");
+		$stmt = $mysqli->prepare("SELECT id, firstname, lastname, email, password FROM vpusers WHERE email = ?");
 		$stmt->bind_param("s", $email);
-		$stmt->bind_result($id, $emailFromDb, $passwordFromDb);
+		$stmt->bind_result($id, $firstnameFromDb, $lastnameFromDb, $emailFromDb, $passwordFromDb);
 		$stmt->execute();
 		
 		//kontrollime kasutajat
@@ -45,6 +45,16 @@
 				//salvestame sesssiooni muutujaid
 				$_SESSION["userId"] = $id;
 				$_SESSION["userEmail"] = $emailFromDb;
+				$_SESSION["firstname"] = $firstnameFromDb;
+				$_SESSION["lastname"] = $lastnameFromDb;
+				//Kasutajate nägemise functsioon
+					//kasutajate tabel
+					function seeUsers() {
+						$stmt = $mysqli->prepare("SELECT id, firstname, lastname, email FROM vpusers");	
+						while($stmt->fetch()){
+							echo "ello";
+						}
+					}
 				
 				//liigume pealehele
 				header("Location: main.php");

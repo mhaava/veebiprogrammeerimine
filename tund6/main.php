@@ -56,6 +56,7 @@ if(isset($_GET["logout"])){
 	<body>
 		<p><a href="?logout=1">Logi välja!</a></p>
 		<p><a href="usersInfo.php">Kasutajad</a></p>
+		<p><a href="usersIdeas.php">Head mõtted</a></p>
 		
 		<h1><?php echo $_SESSION["firstname"] ." " .$_SESSION["lastname"]; ?></h1>
 		<img src="<?php echo $picDir .$picFile ?>" alt="Tallinna ülikool">
