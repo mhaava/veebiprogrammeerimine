@@ -85,15 +85,20 @@
 	}
 	//kasutajate tabel
 	function seeUsers() {
-		
+		$tabel="";
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		$stmt = $mysqli->prepare("SELECT id, firstname, lastname, email FROM vpusers");
 		$stmt->execute();
+		$stmt->bind_result($id, $firstnameFromDb, $lastnameFromDb, $emailFromDb);
 		while($stmt->fetch()){
-			//töötab
+			$tabel .= '<tr><th>'. $firstnameFromDb. '</th><th>'. $lastnameFromDb. '</th><th>'. $emailFromDb. '</th></tr>';
+			
         }
+		$stmt->close();
+		$mysqli->close();
+		return $tabel;
 	}
-	seeUsers();
+
 	
 	
 	

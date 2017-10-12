@@ -29,10 +29,15 @@ if(isset($_GET["logout"])){
 		<link rel="stylesheet" type="text/css" href="style.css">
 	</head>
 	<body>
-		<?php seeUsers(); ?>
+	<table border="1" style="border: 1px solid black; border-collapse: collapse">
+	<tr style="background-color:red;">
+		<th>eesnimi</th><th>perekonnanimi</th><th>e-posti aadress</th>
+	</tr>
+		<?php echo seeUsers(); ?>
+	</table>
 		<p><a href="?logout=1">Logi välja!</a></p>
 		<p><a href="main.php">Avaleht</a></p>
-		<h1><?php echo $myName ." " .$myFamilyName; ?></h1>
+		
 		
 
 		
